@@ -9,19 +9,20 @@ import womanAge from "../../assets/growing-up-woman.svg"
 import axios from "axios"
 
 
-// const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
+
 
 
 
 
 const Container = () => {
     const[users,setUsers]=useState([]);
-    
+    // const[defaultImage,setImage]=useState()
     useEffect(()=>{
         changeUsers()
+        
     },[]);
 
-    const[defaultImage,setImage]=useState()
+    
     
     
     const changeUsers=()=>{
@@ -29,16 +30,14 @@ const Container = () => {
         .get("https://randomuser.me/api/")
         .then((res)=>setUsers(res.data.results[0]))
         .catch((err)=> console.log(err));
-
-        setImage(users.picture?.large)
         
-        mouseName()
+        
         mouseMail()
         mouseAge()
-        
+        // setImage(users.picture?.large)
         mousePhone()
         mousePadlock()
-        
+        mouseName()
         
             
 }
@@ -80,9 +79,12 @@ const Container = () => {
     }
     
     const[value,setValue]=useState(false)
-    
+      const [myuser, setMyuser] = useState([]);
+
     const handleClick = () =>{
         setValue(true)
+        setMyuser([...myuser, users]);
+        
         
        
     }
@@ -100,7 +102,7 @@ const Container = () => {
       <div>
     <div className="block">
     <div className="container">
-      <img src={defaultImage} alt="random user" className="user-img" />
+      <img src={users.picture?.large} alt="random user" className="user-img" />
       <p className="user-title">{text}</p>
       <p className="user-value">{data} {data2}</p>
       <div className="values-list">
@@ -145,7 +147,7 @@ const Container = () => {
           </tr>
         </thead>
         <tbody>
-        {users.map((user) => (
+        {myuser.map((user) => (
                 <tr className="body-tr" key={user.email}>
                   <td>{user.name?.first}</td>
                   <td>{user.email}</td>
