@@ -7,6 +7,7 @@ import phone from "../../assets/phone.svg"
 import woman from "../../assets/woman.svg"
 import womanAge from "../../assets/growing-up-woman.svg"
 import axios from "axios"
+import Footer from '../footer/Footer';
 
 
 
@@ -162,6 +163,7 @@ const Container = () => {
     </div>
     </div>
   </div>
+  <Footer/>
   </div>
   )
 }
